@@ -1,22 +1,29 @@
-#include <algorithm>
 #include <bits/stdc++.h>
 using namespace std;
-#define INF 2147483647
-#define endl '\n'
 int main() {
-    string a, b;
-    cin >> a >> b;
-    if(a.size() != b.size()){
-        cout << "NO" << endl;
-        return 0;
+    bool vdd = false;
+    int diff=0;
+    char c1, c2;
+    string primeiro, segundo;
+    cin >> primeiro >> segundo;
+    if(primeiro.size() == segundo.size()) {
+        for(int i=0; i<primeiro.size(); i++) {
+            if(primeiro[i] != segundo[i]) {
+                if(diff == 0) {
+                    c1 = primeiro[i];
+                    c2 = segundo[i];
+                }
+                else if(diff == 1) {
+                    if(primeiro[i] == c2 && segundo[i] == c1)
+                        vdd = true;
+                }
+                diff++;
+            }
+        }
     }
-    vector<int> diff;
-    for(int i = 0; i < a.size(); i++){
-        if(a[i] != b[i]) diff.push_back(i);
-        cout << a[i] << " " << b[i] << " " << diff.size() << endl;
-    }
-    if(diff.size() == 2){
+    if(vdd && diff == 2)
         cout << "YES" << endl;
-    } else cout << "NO" << endl;
+    else
+        cout << "NO" << endl;
     return 0;
 }
